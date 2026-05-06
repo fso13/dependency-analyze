@@ -1,0 +1,45 @@
+name: Sync README to GitHub Pages
+
+on:
+  push:
+    branches:
+      - master
+      - main
+    paths:
+      - README.md
+      - .github/workflows/sync-readme-to-pages.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync-readme:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Render README into docs/index.md
+        run: |
+          mkdir -p docs
+          {
+            echo '---'
+            echo 'layout: default'
+            echo 'title: dependency-analyze'
+            echo '---'
+            echo
+            cat README.md
+          } > docs/index.md
+
+      - name: Commit changes
+        run: |
+          if git diff --quiet -- docs/index.md; then
+            echo "No changes to commit"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/index.md
+          git commit -m "docs: sync README to GitHub Pages"
+          git push
