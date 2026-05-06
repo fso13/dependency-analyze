@@ -151,3 +151,4 @@ gradle.publish.secret=<your secret>
 ```bash
 ./gradlew :build-logic:dependency-analyze-gradle-plugin:publishPlugins
 ```
+
