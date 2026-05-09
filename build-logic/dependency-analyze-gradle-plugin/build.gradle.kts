@@ -33,8 +33,8 @@ dependencies {
 }
 
 gradlePlugin {
-  website.set("https://github.com/fso13/dependency-analize")
-  vcsUrl.set("https://github.com/fso13/dependency-analize.git")
+  website.set("https://github.com/fso13/dependency-analyze")
+  vcsUrl.set("https://github.com/fso13/dependency-analyze.git")
 
   plugins {
     create("dependencyAnalyze") {
@@ -58,24 +58,5 @@ kotlin {
   jvmToolchain(17)
 }
 
-//publishing {
-//  repositories {
-//    mavenLocal()
-//    maven {
-//      name = "nexus"
-//      credentials {
-//        username = findProperty("nexus.username")?.toString()
-//          ?: System.getenv("NEXUS_USERNAME")
-//          ?: readDotEnvValue("NEXUS_USERNAME")
-//          ?: ""
-//        password = findProperty("nexus.password")?.toString()
-//          ?: System.getenv("NEXUS_PASSWORD")
-//          ?: readDotEnvValue("NEXUS_PASSWORD")
-//          ?: ""
-//      }
-//      url = uri("https://nexus.lukit.ru/repository/libs-jaga/")
-//    }
-//  }
-//}
 
 
